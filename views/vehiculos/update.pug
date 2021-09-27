@@ -1,0 +1,38 @@
+extends ../layout 
+
+block content 
+  a(href='/vehiculos') volver 
+
+  br
+  br
+  br
+
+  h1 Actualizando Vehiculos 
+
+  br
+  br
+
+  form(action=`/vehiculos/${vehi.id}/update` method='post')
+    label(for="id") ID: 
+    input#id(type='text' name='id' value=vehi.id)
+    br
+    label(for="nombre") Nombre: 
+    input#nombre(type='text' name='nombre' value=vehi.nombre)
+    br
+    label(for="apellido") Apellido: 
+    input#apellido(type='text' name='apellido' value=vehi.apellido)
+    br
+    label(for="placa") Placa: 
+    input#placa(type='text' name='placa' value=vehi.placa)
+    br
+    label(for="color") Color: 
+    input#color(type='text' name='color' value=vehi.color)
+    br
+    label(for="modelo") Modelo: 
+    input#modelo(type='text' name='modelo' value=vehi.modelo)
+    br
+    label(for="año") Año: 
+    input#ano(type='text' name='año' value=vehi.año)  
+    br 
+    br
+    input.btn(type="submit" value='OK')

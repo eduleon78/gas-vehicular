@@ -1,0 +1,37 @@
+extends layout
+
+block content
+  // Responsive navbar
+  nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+    .container
+      a.navbar-brand(href='#') Gas Vehicular
+      button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+      #navbarSupportedContent.collapse.navbar-collapse
+        ul.navbar-nav.ms-auto.mb-2.mb-lg-0
+          li.nav-item
+            a.nav-link.active(aria-current='page' href='#') Home
+          li.nav-item
+            a.nav-link(href='#') Link
+          li.nav-item.dropdown
+            a#navbarDropdown.nav-link.dropdown-toggle(href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false') Dropdown
+            ul.dropdown-menu.dropdown-menu-end(aria-labelledby='navbarDropdown')
+              li
+                a.dropdown-item(href='#') Action
+              li
+                a.dropdown-item(href='#') Another action
+              li
+                hr.dropdown-divider
+              li
+                a.dropdown-item(href='#') Something else here
+  // Page content
+  .container
+    .text-center.mt-5
+      h1 Bienvenidos al sistema de Gas Vehicular de Margarita
+      p.lead Sitio del interes para los usuarios del sistema a gas vehicular, noticias, datos de interes y registro de usuarios
+      p Desarrollado por LeonEstudios 2021
+      img.img-fluid(src='/images/gas.jpg' alt='estacion de servicio')
+  // Bootstrap core JS
+  script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js')
+  // Core theme JS
+  script(src='js/scripts.js')

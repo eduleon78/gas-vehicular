@@ -1,0 +1,38 @@
+extends ../layout 
+
+block content 
+  a(href='/vehiculos') volver 
+
+  br
+  br
+  br
+
+  h1 Nuevo Vehiculo 
+
+  br
+  br
+
+  form(action='/vehiculos/create' method='post')
+    label(for="id") ID: 
+    input#id(type='text' name='id')
+    br
+    label(for="nombre") Nombre: 
+    input#nombre(type='text' name='nombre')
+    br
+    label(for="apellido") Apellido: 
+    input#apellido(type='text' name='apellido')
+    br
+    label(for="placa") Placa: 
+    input#placa(type='text' name='placa')
+    br
+    label(for="color") Color: 
+    input#color(type='text' name='color')
+    br
+    label(for="modelo") Modelo: 
+    input#modelo(type='text' name='modelo')
+    br
+    label(for="año") Año: 
+    input#ano(type='text' name='año')
+    br 
+    br
+    input.btn(type="submit" value='OK')
