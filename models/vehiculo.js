@@ -34,10 +34,10 @@ Vehiculo.removeById = function(aVehiId){
     }
 }
 
-var a = new Vehiculo(14840089, 'eduardo', 'leon', 'agd82e', 'beige', 'trailblazer', 2007);
+/* var a = new Vehiculo(14840089, 'eduardo', 'leon', 'agd82e', 'beige', 'trailblazer', 2007);
 var b = new Vehiculo(12920708, 'sonyram', 'acosta', 'aa924ro', 'blanco', 'corolla', 2011);
 
 Vehiculo.add(a);
-Vehiculo.add(b);
+Vehiculo.add(b); */
 
 module.exports = Vehiculo;
