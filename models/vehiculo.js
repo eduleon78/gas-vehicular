@@ -1,43 +1,46 @@
-var Vehiculo = function (id, nombre, apellido, placa, color, modelo, año){
-    this.id = id;
-    this.nombre = nombre;
-    this.apellido = apellido;
-    this.placa = placa;
-    this.color = color;
-    this.modelo = modelo;
-    this.año = año;
-}
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
-Vehiculo.prototype.toString = function(){
-    return 'id: ' + this.id + " | color: " + this.color;
-}
+var vehiculoSchema = new Schema({
+    code: Number,
+    nombre: String,
+    apellido: String,
+    placa: String,
+    color: String,
+    modelo: String,
+    año: Number
+});
 
-Vehiculo.allVehis = [];
-Vehiculo.add = function(aVehi){
-    Vehiculo.allVehis.push(aVehi);
-}
+vehiculoSchema.statics.createInstance = function(code, nombre, apellido, placa, color, modelo, año){
+    return new this({
+        code: code,
+        nombre: nombre,
+        apellido: apellido,
+        placa: placa,
+        color: color,
+        modelo: modelo,
+        año: año
+    });
+};
 
-Vehiculo.findById = function(aVehiId){
-    var aVehi = Vehiculo.allVehis.find(x => x.id == aVehiId);
-    if (aVehi)
-        return aVehi;
-    else
-        throw new Error(`No existe un veiculo con el id ${aVehiId}`);
-}
+vehiculoSchema.methods.toString = function() {
+    return 'code: ' + this.code + ' | nombre: ' + this.nombre;
+};
 
-Vehiculo.removeById = function(aVehiId){
-    for(var i = 0; i < Vehiculo.allVehis.length; i++){
-        if (Vehiculo.allVehis[i].id == aVehiId){
-            Vehiculo.allVehis.splice(i, 1);
-            break;
-        }
-    }
-}
+vehiculoSchema.statics.allVehis = function(cb){
+    return this.find({}, cb);
+};
 
-/* var a = new Vehiculo(14840089, 'eduardo', 'leon', 'agd82e', 'beige', 'trailblazer', 2007);
-var b = new Vehiculo(12920708, 'sonyram', 'acosta', 'aa924ro', 'blanco', 'corolla', 2011);
+vehiculoSchema.statics.add = function(aVehi, cb){
+   this.create(aVehi, cb);
+};
 
-Vehiculo.add(a);
-Vehiculo.add(b); */
+vehiculoSchema.statics.findByCode = function(aCode, cb){
+    return this.findOne({code: aCode}, cb);
+};
 
-module.exports = Vehiculo;
+vehiculoSchema.statics.removeByCode = function(aCode, cb){
+    return this.deleteOne({code: aCode}, cb);
+};
+
+module.exports = mongoose.model('Vehiculo', vehiculoSchema);
