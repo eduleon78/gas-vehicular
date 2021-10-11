@@ -3,14 +3,16 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var bcrypt = require('bcrypt');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var usuariosRouter = require('./routes/usuarios');
+var tokenRouter = require('./routes/token')
 var vehiculosRouter = require('./routes/vehiculos');
 var vehiculosAPIRouter = require('./routes/api/vehiculos');
 var usuariosAPIRouter = require('./routes/api/usuarios');
 
+//const Usuario = require('./models/usuario');
+//const Token = require('./models/token');
 
 var app = express();
 
@@ -33,7 +35,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/usuarios', usuariosRouter);
+app.use('/token', tokenRouter);
+
 app.use('/vehiculos', vehiculosRouter);
 app.use('/api/vehiculos', vehiculosAPIRouter);
 app.use('/api/usuarios', usuariosAPIRouter);
