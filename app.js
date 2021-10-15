@@ -1,3 +1,4 @@
+require('dotenv').config();
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -34,11 +35,12 @@ app.use(session({
 }));
 
 const mongoose = require('mongoose');
+//await mongoose.connect('mongodb://localhost:27017/vehiculos_gas');
 
 main().catch(err => console.log(err));
 
 async function main() {
-  await mongoose.connect('mongodb://localhost:27017/vehiculos_gas');
+  await mongoose.connect('process.env.MONGO_URI');
 }
 
 // view engine setup
@@ -59,14 +61,15 @@ app.get('/login', function(req, res){
 
 app.post('/login', function(req, res, next){
   passport.authenticate('local', function(err, usuario, info){
-    if (err) return next(err);
-    if (!usuario) return res.render('session/login', {info});
-    req.logIn(usuario, function(err) {
-      if (err) return next(err);
-      return res.redirect('/');
-    });
+      if(err) return next(err);
+      if(!usuario) return res.render('session/login', {info});
+      req.logIn(usuario, function(err) {
+          if (err) return next(err);
+          return res.redirect('/');
+      });
   })(req, res, next);
 });
+
 
 app.get('/logout', function(req, res){
   req.logout();
@@ -149,7 +152,7 @@ function loggedIn(req, res, next) {
   if (req.user) {
     next();
   } else {
-    console.log('user sin loguearse'); 
+    console.log('Usuario sin loguearse'); 
     res.redirect('/login');
   }
 };
