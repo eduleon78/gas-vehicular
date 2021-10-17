@@ -89,7 +89,7 @@ usuarioSchema.methods.resetPassword = function(password){
         if (err) { return console.log(err.message); }
 
         const mailOptions = {
-            from: 'no-reply@redbicicletas.com',
+            from: 'no-reply@gas-vehicular.com',
             to: email_destination,
             subject: 'Reseteo de password de cuenta',
             text: 'Hola,\n\n'+ 'Por favor, para resetear el password de su cuenta haga click en este link: \n' + 'http://localhost:5000' + '/resetPassword/' + token.token + '.\n'
@@ -102,5 +102,34 @@ usuarioSchema.methods.resetPassword = function(password){
         });
     });
 }
+
+usuarioSchema.statics.findOneOrCreateByGoogle = function findOneOrCreate(condition, callback) {
+    const self = this;
+    console.log(condition);
+    self.findOne({
+        $or:[
+            {'googleId': condition.id}, {'email': condition.emails[0].value}
+    ]}, (err, result) => {
+        if (result) { // login
+            callback(err, result);
+        } else { // registro
+            console.log('---------- CONDITION ----------');
+            console.log(condition);
+            let values = {};
+            values.googleId = condition.id;
+            values.email = condition.emails[0].value;
+            values.nombre = condition.displayName || 'SIN NOMBRE';
+            values.verificado = true;
+            values.password = condition._json.etag;
+            console.log('---------- VALUES ----------');
+            console.log(values);
+            self.create(values, (err, result) => {
+                if (err) {console.log(err);}
+                return callback(err, result);
+            });
+        }
+    })
+};
+
 
 module.exports = mongoose.model('Usuario', usuarioSchema);
