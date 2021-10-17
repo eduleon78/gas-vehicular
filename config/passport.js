@@ -29,7 +29,7 @@ passport.use(new GoogleStrategy({
     })
 );
 
-passport.serializeUser(function(user, cb){
+passport.serializeUser(function(usuario, cb){
     cb(null, user.id);
 });
 
