@@ -74,7 +74,7 @@ usuarioSchema.methods.enviar_email_bienvenida = function(cb) {
             text: 'Hola,\n\n' + 'Por favor, para verificar su cuenta haga click en este link: \n' + 'http://localhost:5000' + '\/token/confirmation\/' + token.token + '.\n'
         };
 
-        mailer.sendMail(mailOptions, function (err, result) {
+        mailer.sendMail(mailOptions, function (err) {
             if (err) { return console.log(err.message); }
 
             console.log('Se ha enviado un email de bienvenida a: ' + email_destination + '.');
@@ -95,7 +95,7 @@ usuarioSchema.methods.resetPassword = function(password){
             text: 'Hola,\n\n'+ 'Por favor, para resetear el password de su cuenta haga click en este link: \n' + 'http://localhost:5000' + '/resetPassword/' + token.token + '.\n'
         };
 
-        mailer.sendMail(mailOptions, function(err, result) {
+        mailer.sendMail(mailOptions, function(err) {
             if (err) { return console.log(err); }
 
             console.log('Se ha enviado un email de reseteo de password a:  '+ email_destination + '.');

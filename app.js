@@ -45,7 +45,7 @@ app.use(session({
   secret: 'gas_vehicular_!!!***!"+!"+!"+!"+!"+!"+123123'
 }));
 
-const mongoose = require('mongoose');
+var mongoose = require('mongoose');
 //await mongoose.connect('mongodb://localhost:27017/vehiculos_gas');
 
 main().catch(err => console.log(err));
@@ -72,7 +72,7 @@ app.get('/login', function(req, res){
 
 app.post('/login', function(req, res, next){
   passport.authenticate('local', function(err, usuario, info){
-      if(err) return next(err);
+      if (err) return next(err);
       if(!usuario) return res.render('session/login', {info});
       req.logIn(usuario, function(err) {
           if (err) return next(err);
