@@ -96,7 +96,7 @@ app.post('/login', function(req, res, next){
 
 app.get('/logout', function(req, res){
   req.logout();
-  res.render('/');
+  res.redirect('/');
 });
 
 app.get('/forgotPassword', function(req, res){

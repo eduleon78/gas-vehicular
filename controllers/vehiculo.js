@@ -1,7 +1,9 @@
 var Vehiculo = require('../models/vehiculo');
 
 exports.vehiculo_list = function(req, res){
-    res.render('vehiculos/index', {vehis: Vehiculo.allVehis});
+    Vehiculo.allVehis(function(err, vehis){
+        res.render('vehiculos/index', {vehis: vehis});
+    });
 }
 
 exports.vehiculo_create_get = function(req, res){
@@ -9,7 +11,7 @@ exports.vehiculo_create_get = function(req, res){
 }
 
 exports.vehiculo_create_post = function(req, res){
-    var vehi = new Vehiculo(req.body.id, req.body.nombre, req.body.apellido, req.body.placa, req.body.color, req.body.modelo, req.body.año);
+    var vehi = new Vehiculo({code: req.body.id, nombre: req.body.nombre, apellido: req.body.apellido, placa:req.body.placa, color: req.body.color, modelo: req.body.modelo, año: req.body.año});
     Vehiculo.add(vehi);
 
     res.redirect('/vehiculos');

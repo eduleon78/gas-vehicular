@@ -12,14 +12,18 @@ block content
           li.nav-item
             a.nav-link.active(aria-current='page' href='/login') Login
           li.nav-item
-            a.nav-link(href='#') Registrarse 
+            a.nav-link.active(aria-current='page' href='/logout') Logout
+          li.nav-item
+            a.nav-link(href='/vehiculos') Mis Vehículos 
           li.nav-item.dropdown
             a#navbarDropdown.nav-link.dropdown-toggle(href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false') Informacion
             ul.dropdown-menu.dropdown-menu-end(aria-labelledby='navbarDropdown')
               li
                 a.dropdown-item(href='/privacy_policy.html') Politicas de Privacidad
               li
-                a.dropdown-item(href='#') Horarios
+                a.dropdown-item(href='#') Horario de Atención
+              li
+                a.dropdown-item(href='#') Citas para revisión
               li
                 hr.dropdown-divider
               li
