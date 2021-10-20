@@ -18,7 +18,7 @@ block content
     tbody 
       each vehi in vehis 
         tr 
-          td(scope='row')
+          th(scope='row')
             = vehi.id
           td= vehi.nombre
           td= vehi.apellido
@@ -27,10 +27,10 @@ block content
           td= vehi.modelo
           td= vehi.año
           td
-            a(href="vehiculos/" + vehi.id + '/update') Editar  
+            a(href='vehiculos/' + vehi.id + '/update') Editar  
           td  
             form.inline(method='post' action='vehiculos/' + vehi.id + '/delete')
-                input(type="hidden" name='id' value=vehi.id)
+                input(type='hidden' name='id' value= vehi.id)
                 button.link-button(type='submit' name='submit_param' value='submit_value' class='btn')
                     = 'Eliminar'
 

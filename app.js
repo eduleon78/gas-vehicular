@@ -46,13 +46,25 @@ app.use(session({
 }));
 
 var mongoose = require('mongoose');
+
+//mongodb+srv://admin:<EBYYkYCPE4Mnea1X>@cluster0.0xqkj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+// si estoy en el ambiente de desarrollo usar
+// 'mongodb://localhost:27017/vehiculos_gas';
+// sino usar
+var mongoDB = process.env.MONGO_URI;
+mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.Promise = global.Promise;
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error'));
+
+/* var mongoose = require('mongoose');
 //await mongoose.connect('mongodb://localhost:27017/vehiculos_gas');
 
 main().catch(err => console.log(err));
 
 async function main() {
   await mongoose.connect('process.env.MONGO_URI');
-}
+} */
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -88,7 +100,7 @@ app.get('/logout', function(req, res){
 });
 
 app.get('/forgotPassword', function(req, res){
-  res. render('session/forgotPassword');
+  res.render('session/forgotPassword');
 });
 
 app.post('/forgotPassword', function(req, res){
@@ -182,7 +194,7 @@ function loggedIn(req, res, next) {
   if (req.user) {
     next();
   } else {
-    console.log('Usuario sin loguearse'); 
+    console.log('usuario sin loguearse'); 
     res.redirect('/login');
   }
 };

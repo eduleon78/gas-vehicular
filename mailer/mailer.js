@@ -18,7 +18,7 @@ if (process.env.NODE_ENV === 'production'){
                 api_key: process.env.SENDGRID_API_SECRET
             }            
         }
-    mailConfig = sgTransport(options);
+        mailConfig = sgTransport(options);
 
     } else {
         // all emails are catched by ethereal.email

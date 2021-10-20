@@ -12,7 +12,7 @@ module.exports = {
         });
     },
     update: function(req, res, next){
-        var update_values = {nombre: req.body.nombre};
+        var update_values = {nombre: req.body.nombre}; // aqui se puede pasar otros valores
         Usuario.findByIdAndUpdate(req.params.id, update_values, function(err, usuario){
             if (err){
                 consolde.log(err);
