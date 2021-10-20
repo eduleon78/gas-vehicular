@@ -145,7 +145,6 @@ app.post('/resetPassword', function(req, res) {
   });
 });
 
-app.use('/', indexRouter);
 app.use('/usuarios', usuariosRouter);
 app.use('/token', tokenRouter);
 
@@ -164,15 +163,17 @@ app.use('/google31dcdb96089a048f', function(req, res) {
 });
 
 app.get('/auth/google',
-  passport.authenticate('google', { scope:
-      [ 'https://www.googleapis.com/auth/plus.login', 
-        'https://www.googleapis.com/auth/plus.profile.emails.read' ] } ));
+  passport.authenticate('google', { scope: [ 
+        'https://gas-vehicular.herokuapp.com/auth/plus.login', 
+        'https://gas-vehicular.herokuapp.com/auth/plus.profile.emails.read' ] } ));
 
-app.get( '/auth/google/callback', passport.authenticate( 'google', {
+app.get('/auth/google/callback', passport.authenticate( 'google', {
       successRedirect: '/',
       failureRedirect: '/error'
     })
 );
+
+app.use('/', indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
