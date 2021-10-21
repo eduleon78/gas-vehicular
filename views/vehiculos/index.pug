@@ -1,9 +1,13 @@
 extends ../layout 
 
 block content
-  a(href='/vehiculos/create') Nuevo Vehiculo
   br
-  a(href='/') Inicio 
+  a(href='/vehiculos/create' class='btn btn-primary' style='text-align:center') Registrar Vehiculo
+  br
+  br
+  a(href='/' class='btn btn-danger' style='text-align:center') Volver al Inicio 
+  br
+  br
 
   table.table
     thead 

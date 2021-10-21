@@ -1,38 +1,39 @@
 extends ../layout 
 
 block content 
-  a(href='/vehiculos') volver 
+  a(href='/vehiculos' class='btn btn-danger' style='text-align:center') Volver a vehiculos 
 
   br
   br
   br
 
-  h1 Nuevo Vehiculo 
+  h1 Crear Nuevo Vehiculo 
 
   br
   br
 
   form(action='/vehiculos/create' method='post')
-    label(for="id") ID: 
-    input#id(type='text' name='id')
-    br
-    label(for="nombre") Nombre: 
-    input#nombre(type='text' name='nombre')
-    br
-    label(for="apellido") Apellido: 
-    input#apellido(type='text' name='apellido')
-    br
-    label(for="placa") Placa: 
-    input#placa(type='text' name='placa')
-    br
-    label(for="color") Color: 
-    input#color(type='text' name='color')
-    br
-    label(for="modelo") Modelo: 
-    input#modelo(type='text' name='modelo')
-    br
-    label(for="año") Año: 
-    input#ano(type='text' name='año')
+    .form-group
+        label(for='id') ID: 
+        input#id.form-control(type='text' name='id')
+    .form-group
+        label(for="nombre") Nombre: 
+        input#nombre.form-control(type='text' name='nombre')
+    .form-group
+        label(for="apellido") Apellido: 
+        input#apellido.form-control(type='text' name='apellido')
+    .form-group
+        label(for="placa") Placa: 
+        input#placa.form-control(type='text' name='placa')
+    .form-group
+        label(for="color") Color: 
+        input#color.form-control(type='text' name='color')
+    .form-group
+        label(for="modelo") Modelo: 
+        input#modelo.form-control(type='text' name='modelo')
+    .form-group
+        label(for="año") Año: 
+        input#ano.form-control(type='text' name='año')
     br 
     br
-    input.btn(type="submit" value='OK')
+    input.btn.btn-dark(type="submit" value='OK') 
