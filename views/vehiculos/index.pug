@@ -33,11 +33,11 @@ block content
           td= vehi.modelo
           td= vehi.año
           td
-            a(href='vehiculos/' + vehi.id + '/update') Editar  
+            a.btn.btn-primary(href='vehiculos/' + vehi.id + '/update') Editar  
           td  
             form.inline(method='post' action='vehiculos/' + vehi.id + '/delete')
                 input(type='hidden' name='id' value= vehi.id)
-                button.link-button(type='submit' name='submit_param' value='submit_value' class='btn')
+                button.link-button.btn-danger(type='submit' name='submit_param' value='submit_value' class='btn')
                     = 'Eliminar'
             
 

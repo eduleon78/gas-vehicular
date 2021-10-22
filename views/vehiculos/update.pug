@@ -1,7 +1,7 @@
 extends ../layout 
 
 block content 
-  a(href='/vehiculos') volver 
+  a(href='/vehiculos' class='btn btn-danger' style='text-align:center') Volver a Vehiculos  
 
   br
   br
@@ -13,26 +13,33 @@ block content
   br
 
   form(action=`/vehiculos/${vehi.id}/update` method='post')
-    label(for="id") ID: 
-    input#id(type='text' name='id' value=vehi.id)
+    .form-group
+        label(for="id") ID: 
+        input#id.form-control(type='text' name='id' value=vehi.id)
     br
-    label(for="nombre") Nombre: 
-    input#nombre(type='text' name='nombre' value=vehi.nombre)
+    .form-group
+        label(for="nombre") Nombre: 
+        input#nombre.form-control(type='text' name='nombre' value=vehi.nombre)
     br
-    label(for="apellido") Apellido: 
-    input#apellido(type='text' name='apellido' value=vehi.apellido)
+    .form-group
+        label(for="apellido") Apellido: 
+        input#apellido.form-control(type='text' name='apellido' value=vehi.apellido)
     br
-    label(for="placa") Placa: 
-    input#placa(type='text' name='placa' value=vehi.placa)
+    .form-group
+        label(for="placa") Placa: 
+        input#placa.form-control(type='text' name='placa' value=vehi.placa)
     br
-    label(for="color") Color: 
-    input#color(type='text' name='color' value=vehi.color)
+    .form-group
+        label(for="color") Color: 
+        input#color.form-control(type='text' name='color' value=vehi.color)
     br
-    label(for="modelo") Modelo: 
-    input#modelo(type='text' name='modelo' value=vehi.modelo)
+    .form-group
+        label(for="modelo") Modelo: 
+        input#modelo.form-control(type='text' name='modelo' value=vehi.modelo)
     br
-    label(for="año") Año: 
-    input#ano(type='text' name='año' value=vehi.año)  
+    .form-group
+        label(for="año") Año: 
+        input#ano.form-control(type='text' name='año' value=vehi.año)  
     br 
     br
-    input.btn(type="submit" value='OK')
+    input.btn.btn-primary(type="submit" value='OK')

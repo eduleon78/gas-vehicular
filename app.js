@@ -51,20 +51,21 @@ var mongoose = require('mongoose');
 // si estoy en el ambiente de desarrollo usar
 // 'mongodb://localhost:27017/vehiculos_gas';
 // sino usar
-var mongoDB = process.env.MONGO_URI;
+/* var mongoDB = process.env.MONGO_URI;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true});
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error'));
+db.on('error', console.error.bind(console, 'MongoDB connection error')); */
 
-/* var mongoose = require('mongoose');
+
+var mongoose = require('mongoose');
 //await mongoose.connect('mongodb://localhost:27017/vehiculos_gas');
 
 main().catch(err => console.log(err));
 
 async function main() {
   await mongoose.connect('process.env.MONGO_URI');
-} */
+}
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

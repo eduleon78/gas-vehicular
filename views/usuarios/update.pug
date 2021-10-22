@@ -1,23 +1,21 @@
 extends ../layout
 
 block content 
-  a(href="/usuarios") Volver 
+  a(href='/usuarios' class='btn btn-danger' style='text-align:center') Volver a Usuarios  
 
   br
   br
   br
-
-  h1 Actualizando Usuario 
-
+  h1 Actualizar Usuario 
   br
   br
 
   form(action=`/usuarios/${usuario.id}/update` method='post')
     .form-group 
         label(for="nombre") Nombre: 
-        input#nombre.form-control(type="text" name='nombre' value=usuario.nombre class='btn')
+        input#nombre.form-control(type="text" name='nombre' value=usuario.nombre lass=errors.nombre ? 'is-invalid' : '')
         if errors.nombre 
-            email#nombrehelp.text-danger 
+            small#nombrehelp.text-danger 
                 = errors.nombre.message
 
     

@@ -32,7 +32,7 @@ vehiculoSchema.statics.allVehis = function(cb){
 };
 
 vehiculoSchema.statics.add = function(aVehi, cb){
-   this.create(aVehi, cb);
+   return this.create(aVehi, cb);
 };
 
 vehiculoSchema.statics.findByCode = function(aCode, cb){

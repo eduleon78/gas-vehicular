@@ -37,7 +37,8 @@ exports.vehiculo_update_post = function(req, res){
 }
 
 exports.vehiculo_delete_post = function(req, res){
-    Vehiculo.removeByCode(req.body.code);
+    Vehiculo.removeById(req.body.id);
+    
 
     res.redirect('/vehiculos');
 }
