@@ -10,7 +10,7 @@ passport.use(new FacebookTokenStrategy({
     }, function(accessToken, refreshToken, profile, done) {
         try {
             User.findOneOrCreateByFacebook(profile, function (err, user) {
-                if (err) console.log(err, user);
+                if (err) console.log('err' + err);
                 return done(err, user);
             });
         } catch(err2){
