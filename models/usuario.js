@@ -60,7 +60,6 @@ usuarioSchema.methods.reservar = function(vehiId, desde, hasta, cb){
     console.log(reserva);
     reserva.save(cb);
 }
-
 usuarioSchema.methods.enviar_email_bienvenida = function(cb) {
     const token = new Token({_userId: this.id, token: crypto.randomBytes(16).toString('hex')});
     const email_destination = this.email;
@@ -82,7 +81,7 @@ usuarioSchema.methods.enviar_email_bienvenida = function(cb) {
     });
 };
 
-usuarioSchema.methods.resetPassword = function(password){
+usuarioSchema.methods.resetPassword = function(cb){
     const token = new Token({_userId: this.id, token: crypto.randomBytes(16).toString('hex')});
     const email_destination = this.email;
     token.save(function (err) {
@@ -102,6 +101,8 @@ usuarioSchema.methods.resetPassword = function(password){
         });
     });
 }
+
+
 
 usuarioSchema.statics.findOneOrCreateByGoogle = function findOneOrCreate(condition, callback) {
     const self = this;

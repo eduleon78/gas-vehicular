@@ -19,7 +19,7 @@ if (process.env.NODE_ENV === 'production'){
             }            
         }
         mailConfig = sgTransport(options);
-
+        
     } else {
         // all emails are catched by ethereal.email
         mailConfig = {
@@ -31,7 +31,6 @@ if (process.env.NODE_ENV === 'production'){
             }
         };
     }
-
 }
 
 module.exports = nodemailer.createTransport(mailConfig);

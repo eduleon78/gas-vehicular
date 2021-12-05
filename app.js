@@ -13,6 +13,7 @@ var indexRouter = require('./routes/index');
 var usuariosRouter = require('./routes/usuarios');
 var tokenRouter = require('./routes/token')
 var vehiculosRouter = require('./routes/vehiculos');
+var reservasRouter = require('./routes/reservas')
 var vehiculosAPIRouter = require('./routes/api/vehiculos');
 var usuariosAPIRouter = require('./routes/api/usuarios');
 var authAPIRouter = require('./routes/api/auth');
@@ -51,21 +52,21 @@ var mongoose = require('mongoose');
 // si estoy en el ambiente de desarrollo usar
 // 'mongodb://localhost:27017/vehiculos_gas';
 // sino usar
-/* var mongoDB = process.env.MONGO_URI;
+var mongoDB = process.env.MONGO_URI;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true});
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error')); */
+db.on('error', console.error.bind(console, 'MongoDB connection error'));
 
 
-var mongoose = require('mongoose');
+/* var mongoose = require('mongoose');
 //await mongoose.connect('mongodb://localhost:27017/vehiculos_gas');
 
 main().catch(err => console.log(err));
 
 async function main() {
   await mongoose.connect('process.env.MONGO_URI');
-}
+} */
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -86,7 +87,7 @@ app.get('/login', function(req, res){
 app.post('/login', function(req, res, next){
   passport.authenticate('local', function(err, usuario, info){
       if (err) return next(err);
-      if(!usuario) return res.render('session/login', {info});
+      if (!usuario) return res.render('session/login', {info});
       req.logIn(usuario, function(err) {
           if (err) return next(err);
           return res.redirect('/');
@@ -130,19 +131,18 @@ app.get('/resetPassword/:token', function(req, res, next) {
 
 app.post('/resetPassword', function(req, res) {
   if(req.body.password != req.body.confirm_password) {
-      res.render('session/resetPassword', { errors: { confirm_password: { message: 'No coincide con el password ingresado'}}, 
-      usuario: new Usuario({email: req.body.email})});
-      return;
+    res.render('session/resetPassword', { errors: { confirm_password: { message: 'No coincide con el password ingresado'}}, usuario: new Usuario({email: req.body.email})});
+    return;
   }
   Usuario.findOne({ email: req.body.email }, function(err, usuario) {
-      usuario.password = req.body.password;
-      usuario.save(function(err) {
-          if(err) {
-              res.render('session/resetPassword', {errors: err.errors, usuario: new Usuario({ email: req.body.email})});
-          }else{
-              res.redirect('/login');
-          }
-      });
+    usuario.password = req.body.password;
+    usuario.save(function(err) {
+      if(err) {
+          res.render('session/resetPassword', {errors: err.errors, usuario: new Usuario({ email: req.body.email})});
+      }else{
+          res.redirect('/login');
+      }
+    });
   });
 });
 
@@ -150,6 +150,7 @@ app.use('/usuarios', usuariosRouter);
 app.use('/token', tokenRouter);
 
 app.use('/vehiculos', loggedIn, vehiculosRouter);
+app.use('/reservas', reservasRouter)
 
 app.use('/api/auth', authAPIRouter);
 app.use('/api/vehiculos', validarUsuario, vehiculosAPIRouter);
@@ -219,11 +220,8 @@ function validarUsuario(req, res, next) {
     if (err) {
       res.json({status:"error", message: err.message, data:null});
     }else{
-
       req.body.userId = decoded.id;
-
       console.log('jwt verify: ' + decoded);
-
       next();
     }
   });

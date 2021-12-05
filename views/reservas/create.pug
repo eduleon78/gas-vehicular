@@ -1,0 +1,39 @@
+extends ../layout 
+
+block content 
+  a(href='/reservas' class='btn btn-danger' style='text-align:center') Volver a vehiculos 
+
+  br
+  br
+  br
+
+  h1 Crear Reserva  
+
+  br
+  br
+
+  form(action='/reservas/create' method='post')
+    .form-group
+        label(for='id') ID: 
+        input#id.form-control(type='text' name='id')
+    .form-group
+        label(for="nombre") Nombre: 
+        input#nombre.form-control(type='text' name='nombre')
+    .form-group
+        label(for="apellido") Apellido: 
+        input#apellido.form-control(type='text' name='apellido')
+    .form-group
+        label(for="placa") Placa: 
+        input#placa.form-control(type='text' name='placa')
+    .form-group
+        label(for="color") Color: 
+        input#color.form-control(type='text' name='color')
+    .form-group
+        label(for="modelo") Modelo: 
+        input#modelo.form-control(type='text' name='modelo')
+    .form-group
+        label(for="año") Año: 
+        input#ano.form-control(type='text' name='año')
+    br 
+    br
+    input.btn.btn-dark(type="submit" value='OK') 

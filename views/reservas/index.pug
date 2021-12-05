@@ -1,0 +1,43 @@
+extends ../layout 
+
+block content
+  br
+  a(href='/reservas/create' class='btn btn-primary' style='text-align:center') Reservar Vehiculo
+  br
+  br
+  a(href='/' class='btn btn-danger' style='text-align:center') Volver al Inicio 
+  br
+  br
+
+  table.table
+    thead 
+      tr 
+        th(scope='col') #
+        th(scope='col') nombre 
+        th(scope='col') apellido
+        th(scope='col') placa
+        th(scope='col') color
+        th(scope='col') modelo
+        th(scope='col') año
+        th(scope='col')
+        th(scope='col') 
+    tbody 
+      each vehi in vehis 
+        tr 
+          th(scope='row')
+            = vehi.id  
+          td= vehi.nombre
+          td= vehi.apellido
+          td= vehi.placa 
+          td= vehi.color
+          td= vehi.modelo
+          td= vehi.año
+          td
+            a.btn.btn-primary(href='reservas/' + vehi.id + '/update') Editar  
+          td  
+            form.inline(method='post' action='reservas/' + vehi.id + '/delete')
+                input(type='hidden' name='id' value= vehi.id)
+                button.link-button.btn-danger(type='submit' name='submit_param' value='submit_value' class='btn')
+                    = 'Eliminar'
+            
+

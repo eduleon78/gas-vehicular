@@ -25,14 +25,20 @@ body#LoginForm
             input#password.form-control(type='password' placeholder='Password' name="password")
           .forgot
             a(href='/forgotPassword') Olvidé mi password
+            br
 
-          a(href='/auth/google') Login con Google
+          a.text-danger(href='/auth/google') Login con Google
 
           br
 
-          a(href="/auth/facebook")  Login con Facebook
+          a.text-primary(href="/auth/facebook")  Login con Facebook
 
           br
           br
 
           button.btn.btn-primary(type='submit') Login
+
+          br
+          br
+
+          a.btn.btn-success(href='/usuarios/create') Deseas Registrarte?
