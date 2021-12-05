@@ -166,16 +166,14 @@ app.use('/google31dcdb96089a048f', function(req, res) {
 
 app.get('/auth/google',
   passport.authenticate('google', { scope: [
-    'https://googleapis.com/auth/plus.login', 
-    'https://googleapis.com/auth/plus.profile.emails.read'] }));
+    'https://www.googleapis.com/auth/plus.login', 
+    'https://www.googleapis.com/auth/plus.profile.emails.read' ] } ));
 
-app.get('/auth/google/callback', passport.authenticate('google', {
+app.get('/auth/google/callback', passport.authenticate( 'google', {
       successRedirect: '/', 
-      failureRedirect: '/login' }),
-  function(req, res) {
-    // Successful authentication, redirect home.
-    res.redirect('/');
-  });
+      failureRedirect: '/error' 
+    })
+);
 
 /* app.get('/auth/google',
   passport.authenticate('google', { scope: [ 
