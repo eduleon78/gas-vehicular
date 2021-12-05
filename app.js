@@ -175,17 +175,6 @@ app.get('/auth/google/callback', passport.authenticate( 'google', {
     })
 );
 
-/* app.get('/auth/google',
-  passport.authenticate('google', { scope: [ 
-        'https://googleapis.com/auth/plus.login', 
-        'https://googleapis.com/auth/plus.profile.emails.read' ] } ));
-
-app.get('/auth/google/callback', passport.authenticate( 'google', {
-      successRedirect: '/',
-      failureRedirect: '/error'
-    })
-); */
-
 app.use('/', indexRouter);
 
 // catch 404 and forward to error handler
