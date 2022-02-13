@@ -58,16 +58,6 @@ mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error'));
 
-
-/* var mongoose = require('mongoose');
-//await mongoose.connect('mongodb://localhost:27017/vehiculos_gas');
-
-main().catch(err => console.log(err));
-
-async function main() {
-  await mongoose.connect('process.env.MONGO_URI');
-} */
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -205,7 +195,7 @@ function loggedIn(req, res, next) {
 function validarUsuario(req, res, next) {
   jwt.verify(req.headers['x-access-token'], req.app.get('secretKey'), function(err, decoded) {
     if (err) {
-      res.json({status:"error", message: err.message, data:null});
+      res.json({status:"error", message: err.message, data: null});
     }else{
       req.body.userId = decoded.id;
       console.log('jwt verify: ' + decoded);

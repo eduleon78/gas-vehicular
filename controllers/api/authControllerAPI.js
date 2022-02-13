@@ -5,7 +5,7 @@ const usuario = require('../../models/usuario');
 
 module.exports = {
   authenticate: function(req, res, next) {
-    Usuario.findOne({email:req.body.email}, function(err, userInfo){
+    usuario.findOne({email:req.body.email}, function(err, userInfo){
       if (err) {
         next(err);
       } else {

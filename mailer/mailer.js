@@ -12,7 +12,7 @@ if (process.env.NODE_ENV === 'production'){
 
 } else {
     if (process.env.NODE_ENV === 'staging'){
-        console.log('XXXXXXXXXXXXXXXXX');
+        console.log('XXXXXXXXXX');
         const options = {
             auth: {
                 api_key: process.env.SENDGRID_API_SECRET

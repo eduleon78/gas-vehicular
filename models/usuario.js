@@ -62,17 +62,18 @@ usuarioSchema.methods.reservar = function(vehiId, desde, hasta, cb){
     console.log(reserva);
     reserva.save(cb);
 }
+
 usuarioSchema.methods.enviar_email_bienvenida = function(cb) {
-    const token = new Token({_userId: this.id, token: crypto.randomBytes(16).toString('hex')});
+    const token = new Token({ _userId: this.id, token: crypto.randomBytes(16).toString('hex')});
     const email_destination = this.email;
     token.save(function (err) {
         if (err) { return console.log(err.message); }
-        
+
         const mailOptions = {
-            from: 'no-reply@gas-vehicular-margarita.com',
+            from: 'no-reply@gasvehicular.com',
             to: email_destination,
             subject: 'Verificacion de cuenta',
-            text: 'Hola,\n\n' + 'Por favor, para verificar su cuenta haga click en este link: \n' + 'http://localhost:5000' + '\/token/confirmation\/' + token.token + '.\n'
+            text: 'Hola,\n\n' + 'Por favor, para verificar tu cuenta haga click en este link: \n' + 'http://localhost:5000' + '\/token/confirmation\/' + token.token + '.\n'
         };
 
         mailer.sendMail(mailOptions, function (err) {
@@ -81,7 +82,7 @@ usuarioSchema.methods.enviar_email_bienvenida = function(cb) {
             console.log('Se ha enviado un email de bienvenida a: ' + email_destination + '.');
         });
     });
-};
+}
 
 usuarioSchema.methods.resetPassword = function(cb){
     const token = new Token({_userId: this.id, token: crypto.randomBytes(16).toString('hex')});
@@ -103,8 +104,6 @@ usuarioSchema.methods.resetPassword = function(cb){
         });
     });
 }
-
-
 
 usuarioSchema.statics.findOneOrCreateByGoogle = function findOneOrCreate(condition, callback) {
     const self = this;
@@ -132,7 +131,7 @@ usuarioSchema.statics.findOneOrCreateByGoogle = function findOneOrCreate(conditi
             });
         }
     })
-};
+}
 usuarioSchema.statics.findOneOrCreateByFacebook = function findOneOrCreate(condition, callback) {
     const self = this;
     console.log(condition);
