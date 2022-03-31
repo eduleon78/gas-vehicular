@@ -10,6 +10,7 @@ const MongoDBStore = require('connect-mongodb-session')(session);
 const jwt = require('jsonwebtoken');
 
 var indexRouter = require('./routes/index');
+var underConstructRouter = require('./routes/underConstruct');
 var usuariosRouter = require('./routes/usuarios');
 var tokenRouter = require('./routes/token')
 var vehiculosRouter = require('./routes/vehiculos');
@@ -46,17 +47,23 @@ app.use(session({
   secret: 'gas_vehicular_!!!***!"+!"+!"+!"+!"+!"+123123'
 }));
 
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
+
+main().catch(err => console.log(err));
+
+async function main() {
+  await mongoose.connect('mongodb://localhost:27017/vehiculos_gas');
+}
 
 //mongodb+srv://admin:<EBYYkYCPE4Mnea1X>@cluster0.0xqkj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 // si estoy en el ambiente de desarrollo usar
 // 'mongodb://localhost:27017/vehiculos_gas';
 // sino usar
-var mongoDB = process.env.MONGO_URI;
+/* var mongoDB = process.env.MONGO_URI;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true});
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error'));
+db.on('error', console.error.bind(console, 'MongoDB connection error')); */
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -138,6 +145,7 @@ app.post('/resetPassword', function(req, res) {
 
 app.use('/usuarios', usuariosRouter);
 app.use('/token', tokenRouter);
+app.use('/underConstruct', underConstructRouter);
 
 app.use('/vehiculos', loggedIn, vehiculosRouter);
 app.use('/reservas', reservasRouter)
